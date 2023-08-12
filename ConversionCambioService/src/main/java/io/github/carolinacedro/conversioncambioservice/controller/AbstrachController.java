@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 
 import java.util.List;
+import java.util.Optional;
 
 public abstract class AbstrachController<T> {
 
@@ -16,6 +17,12 @@ public abstract class AbstrachController<T> {
     @GetMapping
     public ResponseEntity<List<T>> findAll() {
         List<T> data = getService().findAll();
+        return ResponseEntity.ok(data);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Optional<T>> findById(@PathVariable Long id) {
+        Optional<T> data = getService().findById(id);
         return ResponseEntity.ok(data);
     }
 

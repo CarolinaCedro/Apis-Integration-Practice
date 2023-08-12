@@ -3,6 +3,7 @@ package io.github.carolinacedro.conversioncambioservice.service;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public abstract class AbstractModelService<T> implements ModelService<T> {
 
@@ -11,6 +12,11 @@ public abstract class AbstractModelService<T> implements ModelService<T> {
     @Override
     public T save(T model) {
         return getRepository().save(model);
+    }
+
+    @Override
+    public Optional<T> findById(Long id) {
+        return getRepository().findById(id);
     }
 
     @Override
