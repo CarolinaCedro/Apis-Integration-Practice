@@ -5,7 +5,7 @@ import io.github.com.priceexchangesystem.application.models.BankOrigin;
 import io.github.com.priceexchangesystem.application.models.Product;
 import io.github.com.priceexchangesystem.application.models.enums.Category;
 import io.github.com.priceexchangesystem.application.models.enums.CoinsAvailable;
-import io.github.com.priceexchangesystem.application.services.ModelService;
+import io.github.com.priceexchangesystem.application.services.AbstractModelService;
 import io.github.com.priceexchangesystem.application.services.impl.ProductServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,16 +22,19 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/api/conversion")
 public class ProductController extends AbstractController<Product> {
+
     private final ProductServiceImpl service;
+
+    @Override
+    protected AbstractModelService<Product> getService() {
+        return service;
+    }
     private final String url = "http://localhost:8081/api/conversion";
 
     @Autowired
     private RestTemplate restTemplate;
 
-    @Override
-    protected ModelService<Product> getService() {
-        return service;
-    }
+
 
     public ProductController(ProductServiceImpl service) {
         this.service = service;
@@ -75,9 +78,6 @@ public class ProductController extends AbstractController<Product> {
         List<BankOrigin> responseList = Arrays.asList(responseEntity.getBody());
         return ResponseEntity.ok(responseList);
     }
-
-
-
 
 
 

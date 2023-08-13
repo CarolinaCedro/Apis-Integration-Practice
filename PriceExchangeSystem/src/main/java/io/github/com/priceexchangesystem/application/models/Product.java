@@ -17,16 +17,10 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
 @Entity
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class Product {
 
     @Id
@@ -40,4 +34,64 @@ public class Product {
     @Enumerated(EnumType.STRING)
     private Category category;
 
+    public Product() {
+    }
+
+    public Product(Long id, String nameProduct, String description, CoinsAvailable coinsAvailable, BigDecimal pricesOtherCurrency, Category category) {
+        this.id = id;
+        this.nameProduct = nameProduct;
+        this.description = description;
+        this.coinsAvailable = coinsAvailable;
+        this.pricesOtherCurrency = pricesOtherCurrency;
+        this.category = category;
+    }
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNameProduct() {
+        return nameProduct;
+    }
+
+    public void setNameProduct(String nameProduct) {
+        this.nameProduct = nameProduct;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public CoinsAvailable getCoinsAvailable() {
+        return coinsAvailable;
+    }
+
+    public void setCoinsAvailable(CoinsAvailable coinsAvailable) {
+        this.coinsAvailable = coinsAvailable;
+    }
+
+    public BigDecimal getPricesOtherCurrency() {
+        return pricesOtherCurrency;
+    }
+
+    public void setPricesOtherCurrency(BigDecimal pricesOtherCurrency) {
+        this.pricesOtherCurrency = pricesOtherCurrency;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 }
